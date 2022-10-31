@@ -2,7 +2,7 @@ name: Test2
 run-name: Publish openapi for feature branch ${{ github.event.workflow_run.head_branch }} from bulid ${{ github.event.workflow_run.run_number }}
 on:
   workflow_run:
-    workflows: ["Test1"]
+    workflows: ["Test"]
     types:
       - completed
   workflow_dispatch:
