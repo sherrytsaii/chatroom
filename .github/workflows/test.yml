@@ -1,5 +1,5 @@
 name: Test2
-run-name: ${{ github.event.workflow_run.run_number!='' && ('Publish openapi for feature branch [github.event.workflow_run.head_branch] from bulid github.event.workflow_run.run_number') || ''}}    
+run-name: ${{ github.event.workflow_run.run_number!='' && format('Publish openapi for feature branch [{0}] from bulid {1}', github.event.workflow_run.head_branch, github.event.workflow_run.run_number) || ''}}    
 on:
   workflow_run:
     workflows: ["Test"]
