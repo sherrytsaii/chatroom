@@ -1,0 +1,24 @@
+name: Test2
+on:
+  workflow_run:
+    workflows: ["Test1"]
+    types:
+      - completed
+  workflow_dispatch:
+    inputs:
+      branch_name:
+        description: The branch that you want to build from
+        required: true
+        type: string
+        
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
+    env:
+      BRANCH_NAME: ${{ github.event.inputs.branch_name || github.ref_name }}
+    steps:
+      - name: Main Process
+        id: main-process
+        run: |
+          echo ${{ env.BRANCH_NAME }}
